@@ -23,4 +23,6 @@
 
 ## Actual impact — після реалізації
 
-Поки не заповнено: зафіксуємо окремим комітом після перевірки тестів.
+**Actual files changed:** `src/payments/normalizePaymentStatus.ts`, три compatibility re-export, `src/orders/OrderService.ts`, `src/payments/internal/StripeClient.ts`, `tests/payment-status.unit.test.ts`, документація.
+
+**Difference from prediction:** Файли збіглися з прогнозом. Додатково видалено непотрібну мутацію Orders усередині StripeClient; усі старі тести залишено незмінними. Рефакторинг stock ownership і calculateTotal навмисно відкладено до рівня 75.
