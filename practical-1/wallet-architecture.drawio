@@ -1,0 +1,70 @@
+<mxfile host="app.diagrams.net">
+<diagram id="wallet-v2" name="Архітектура гаманця">
+<mxGraphModel dx="1500" dy="850" grid="1" gridSize="10" page="1" pageScale="1" pageWidth="1500" pageHeight="850">
+<root>
+<mxCell id="0"/>
+<mxCell id="1" parent="0"/>
+<mxCell id="server" value="СЕРВЕРНИЙ ЗАСТОСУНОК — МОДУЛЬНИЙ МОНОЛІТ" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#2563EB;strokeWidth=3;fontSize=19;fontStyle=1;verticalAlign=top;spacingTop=22;" vertex="1" parent="1">
+<mxGeometry x="300" y="65" width="690" height="685" as="geometry"/>
+</mxCell>
+<mxCell id="client" value="КЛІЄНТ / БРАУЗЕР&#xa;Баланс, історія, перекази" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#3B82F6;strokeWidth=2;fontSize=14;align=center;verticalAlign=middle;spacing=12;" vertex="1" parent="1">
+<mxGeometry x="30" y="315" width="220" height="85" as="geometry"/>
+</mxCell>
+<mxCell id="api" value="API / Controller&#xa;Приймає та перевіряє запити" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#64748B;strokeWidth=2;fontSize=14;align=center;verticalAlign=middle;spacing=12;" vertex="1" parent="1">
+<mxGeometry x="335" y="305" width="170" height="105" as="geometry"/>
+</mxCell>
+<mxCell id="transfer" value="МОДУЛЬ ПЕРЕКАЗІВ&#xa;Транзакції, ID операцій" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#16A34A;strokeWidth=2;fontSize=14;align=center;verticalAlign=middle;spacing=12;" vertex="1" parent="1">
+<mxGeometry x="630" y="165" width="265" height="90" as="geometry"/>
+</mxCell>
+<mxCell id="wallet" value="МОДУЛЬ ГАМАНЦІВ&#xa;Баланси, перевірка коштів" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#64748B;strokeWidth=2;fontSize=14;align=center;verticalAlign=middle;spacing=12;" vertex="1" parent="1">
+<mxGeometry x="630" y="325" width="265" height="90" as="geometry"/>
+</mxCell>
+<mxCell id="history" value="МОДУЛЬ ІСТОРІЇ&#xa;Перегляд операцій" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#64748B;strokeWidth=2;fontSize=14;align=center;verticalAlign=middle;spacing=12;" vertex="1" parent="1">
+<mxGeometry x="630" y="485" width="265" height="90" as="geometry"/>
+</mxCell>
+<mxCell id="db" value="РЕЛЯЦІЙНА БАЗА ДАНИХ&#xa;&#xa;Баланси гаманців&#xa;Перекази та результати&#xa;Унікальні ID операцій&#xa;Завдання сповіщень" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;strokeWidth=2;fontSize=15;align=center;verticalAlign=middle;spacing=12;" vertex="1" parent="1">
+<mxGeometry x="1085" y="225" width="330" height="235" as="geometry"/>
+</mxCell>
+<mxCell id="worker" value="NOTIFICATION WORKER&#xa;Фонова обробка сповіщень" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#F3E8FF;strokeColor=#9333EA;strokeWidth=2;fontSize=14;align=center;verticalAlign=middle;spacing=12;" vertex="1" parent="1">
+<mxGeometry x="1085" y="520" width="330" height="85" as="geometry"/>
+</mxCell>
+<mxCell id="provider" value="EMAIL / PUSH СЕРВІС&#xa;Надсилання повідомлень" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#F1F5F9;strokeColor=#64748B;strokeWidth=2;fontSize=14;align=center;verticalAlign=middle;spacing=12;" vertex="1" parent="1">
+<mxGeometry x="1085" y="665" width="330" height="75" as="geometry"/>
+</mxCell>
+<mxCell id="note" value="ПЕРЕКАЗ: перевірка коштів → одна транзакція БД → збереження результату.&#xa;ПОВТОРИ: унікальний ID не допускає подвійного списання.&#xa;СПОВІЩЕННЯ: фоновий процес працює після фіксації переказу." style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#F1F5F9;strokeColor=#94A3B8;strokeWidth=2;fontSize=12;align=center;verticalAlign=middle;spacing=12;" vertex="1" parent="1">
+<mxGeometry x="335" y="615" width="560" height="105" as="geometry"/>
+</mxCell>
+<mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=20;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#2563EB;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="client" target="api">
+<mxGeometry relative="1" as="geometry"/>
+</mxCell>
+<mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=20;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#2563EB;exitX=1;exitY=0.2;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="api" target="transfer">
+<mxGeometry relative="1" as="geometry"/>
+</mxCell>
+<mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=20;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748B;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="api" target="wallet">
+<mxGeometry relative="1" as="geometry"/>
+</mxCell>
+<mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=20;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748B;exitX=1;exitY=0.8;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="api" target="history">
+<mxGeometry relative="1" as="geometry"/>
+</mxCell>
+<mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=20;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#16A34A;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="transfer" target="wallet">
+<mxGeometry relative="1" as="geometry"/>
+</mxCell>
+<mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=20;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#16A34A;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.22;entryDx=0;entryDy=0;" edge="1" parent="1" source="transfer" target="db">
+<mxGeometry relative="1" as="geometry"/>
+</mxCell>
+<mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=20;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748B;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="wallet" target="db">
+<mxGeometry relative="1" as="geometry"/>
+</mxCell>
+<mxCell id="e8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=20;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748B;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.82;entryDx=0;entryDy=0;" edge="1" parent="1" source="history" target="db">
+<mxGeometry relative="1" as="geometry"/>
+</mxCell>
+<mxCell id="e9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=20;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#9333EA;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="db" target="worker">
+<mxGeometry relative="1" as="geometry"/>
+</mxCell>
+<mxCell id="e10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=20;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#9333EA;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="worker" target="provider">
+<mxGeometry relative="1" as="geometry"/>
+</mxCell>
+</root>
+</mxGraphModel>
+</diagram>
+</mxfile>
